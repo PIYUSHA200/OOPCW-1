@@ -20,16 +20,25 @@ class Configuration {
         File configFile = new File("config.txt");
         if (configFile.exists()) {
             System.out.println("Previous configuration found.");
-            System.out.println("1. Use previous configuration");
-            System.out.println("2. Enter new configuration");
-            System.out.print("Enter your choice: ");
+            int choice = -1;
+            while (true) {
+                System.out.println("1. Use previous configuration");
+                System.out.println("2. Enter new configuration");
+                System.out.print("Enter your choice: ");
 
-            int choice = scanner.nextInt();
-            if (choice == 1) {
-                return loadConfiguration();
-            } else if (choice != 2) {
-                System.out.println("Invalid choice. Exiting...");
-                System.exit(1);
+                try {
+                    choice = scanner.nextInt();
+                    if (choice == 1) {
+                        return loadConfiguration();
+                    } else if (choice == 2) {
+                        break; // Proceed to new configuration input
+                    } else {
+                        System.out.println("Invalid choice! Please enter 1 or 2.");
+                    }
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid input! Please enter a valid number (1 or 2).");
+                    scanner.next(); // Clear invalid input
+                }
             }
         }
 
