@@ -4,25 +4,32 @@ import java.util.Queue;
 public class TicketPool {
     private int maxTicketCapacity;
     private Queue<Integer> tickets; // A queue to represent the tickets in the pool
+    private int ticketCounter; // A counter to generate unique ticket IDs
 
     public TicketPool(int maxTicketCapacity, int totalTickets) {
         this.maxTicketCapacity = maxTicketCapacity;
         this.tickets = new LinkedList<>();
+        this.ticketCounter = 1;
 
         // Initialize the tickets in the pool
-        for (int i = 1; i <= totalTickets; i++) {
-            tickets.add(i);
+        for (int i = 0; i < totalTickets; i++) {
+            tickets.add(ticketCounter++);
         }
     }
 
     public synchronized void addTickets(int ticketsToAdd) {
         int added = 0;
         while (added < ticketsToAdd && tickets.size() < maxTicketCapacity) {
-            tickets.add(tickets.size() + 1); // Add new ticket to the pool
+            tickets.add(ticketCounter++); // Add new ticket with unique ID to the pool
             added++;
         }
 
-        System.out.println("Vendor" + " added " + added + " tickets. Total tickets: " + tickets.size());
+        if (added > 0) {
+            System.out.println("Vendor added " + added + " tickets. Total tickets: " + tickets.size());
+        } else {
+            System.out.println(Thread.currentThread().getName() + " tried adding tickets, but capacity is full!");
+        }
+
         notifyAll(); // Notify waiting threads
     }
 
@@ -30,6 +37,9 @@ public class TicketPool {
         // Ensure that the customer only purchases the exact number of tickets requested
         while (tickets.size() < ticketsToPurchase) {
             try {
+                if (tickets.isEmpty()) {
+                    System.out.println(Thread.currentThread().getName() + " tried purchasing tickets, but none were available.");
+                }
                 wait(); // Wait for tickets to be added
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

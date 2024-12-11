@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Vendor implements Runnable {
@@ -19,6 +22,7 @@ public class Vendor implements Runnable {
     public void run() {
         while (running.get()) { // Check the running flag
             ticketPool.addTickets(releaseCount);
+            logTicketRelease(releaseCount); // Log ticket release
             try {
                 Thread.sleep(releaseRate);
             } catch (InterruptedException e) {
@@ -27,4 +31,13 @@ public class Vendor implements Runnable {
             }
         }
     }
+
+    private void logTicketRelease(int releaseCount) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("system_logs.txt", true))) {
+            writer.write(String.format("Vendor-%d released %d tickets.%n", vendorId, releaseCount));
+        } catch (IOException e) {
+            System.err.println("Error logging vendor ticket release: " + e.getMessage());
+        }
+    }
 }
+
