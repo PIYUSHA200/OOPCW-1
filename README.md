@@ -20,17 +20,17 @@ The system configuration can be loaded from a `config.txt` file or entered manua
 - Maximum Ticket Pool Capacity: The maximum number of tickets that can be held in the ticket pool.
 
 
-##Classes
-#`Configuration`
+Classes
+`Configuration`
 Handles the configuration of the system, including loading from a file or user input.
 
-#`Customer`
+`Customer`
 Represents a customer that purchases tickets from the ticket pool at a specified rate.
 
-#`TicketPool`
+`TicketPool`
 Manages the pool of tickets, including adding and removing tickets.
 
-#`Vendor`
+`Vendor`
 Represents a vendor that releases tickets into the ticket pool at a specified rate.
 
 #`Main`
