@@ -10,13 +10,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to the Real-Time Ticketing System!");
 
-        // Collect user inputs and initialize Configuration
         Configuration config = Configuration.getConfigurationFromUser();
 
-        // Save inputs to a text file
         saveInputsToTextFile(config);
 
-        // Initialize the ticket pool
+
         TicketPool ticketPool = new TicketPool(config.getMaxTicketCapacity(), config.getTotalTickets());
 
         // Start vendor threads (5 vendors)
@@ -57,7 +55,7 @@ public class Main {
     }
 
     private static void stopSystem(Thread[] vendorThreads, Thread[] customerThreads) {
-        running.set(false); // Signal threads to stop
+        running.set(false);
 
         // Interrupt all vendor threads
         for (Thread vendorThread : vendorThreads) {
