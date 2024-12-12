@@ -1,6 +1,6 @@
-Real-Time Ticketing System
+##Real-Time Ticketing System
 
-Overview
+##Overview
 The Real-Time Ticketing System is a Java-based application designed to simulate a ticketing system where multiple vendors release tickets and multiple customers purchase them concurrently.
 The system uses multithreading to handle the concurrent operations of vendors and customers.
 
