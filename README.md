@@ -5,14 +5,14 @@ The Real-Time Ticketing System is a Java-based application designed to simulate 
 The system uses multithreading to handle the concurrent operations of vendors and customers.
 
 
-Key Features
+## Key Features
 - Multithreading: Simultaneous operations of multiple vendors and customers.
 - Configuration: Ability to load previous configurations or enter new configurations.
 - Logging: Logs ticket releases and purchases to a file.
 - Graceful Shutdown: Allows the system to be stopped gracefully by user input.
 
 
-Configuration
+## Configuration
 The system configuration can be loaded from a `config.txt` file or entered manually by the user. The configuration includes:
 - Total Tickets: The total number of tickets available initially.
 - Tickets Released Per Cycle: The number of tickets each vendor releases per cycle.
@@ -20,18 +20,18 @@ The system configuration can be loaded from a `config.txt` file or entered manua
 - Maximum Ticket Pool Capacity: The maximum number of tickets that can be held in the ticket pool.
 
 
-Classes
-`Configuration`
+## Classes
+*`Configuration`*
 Handles the configuration of the system, including loading from a file or user input.
 
-`Customer`
+*`Customer`*
 Represents a customer that purchases tickets from the ticket pool at a specified rate.
 
-`TicketPool`
+*`TicketPool`*
 Manages the pool of tickets, including adding and removing tickets.
 
-`Vendor`
+*`Vendor`*
 Represents a vendor that releases tickets into the ticket pool at a specified rate.
 
-#`Main`
+*`Main`*
 The entry point of the application, responsible for initializing the system, starting threads, and handling user input to stop the system.
