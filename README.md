@@ -1,4 +1,4 @@
-##Real-Time Ticketing System
+Real-Time Ticketing System
 
 ##Overview
 The Real-Time Ticketing System is a Java-based application designed to simulate a ticketing system where multiple vendors release tickets and multiple customers purchase them concurrently.
@@ -20,7 +20,7 @@ The system configuration can be loaded from a `config.txt` file or entered manua
 - Maximum Ticket Pool Capacity: The maximum number of tickets that can be held in the ticket pool.
 
 
-Classes
+##Classes
 #`Configuration`
 Handles the configuration of the system, including loading from a file or user input.
 
