@@ -20,7 +20,7 @@ public class Customer implements Runnable {
 
     @Override
     public void run() {
-        while (running.get()) { // Check the running flag
+        while (running.get()) {
             ticketPool.purchaseTickets(retrievalCount);
             logTicketPurchase(retrievalCount); // Log ticket purchase
             try {

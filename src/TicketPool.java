@@ -34,7 +34,6 @@ public class TicketPool {
     }
 
     public synchronized void purchaseTickets(int ticketsToPurchase) {
-        // Ensure that the customer only purchases the exact number of tickets requested
         while (tickets.size() < ticketsToPurchase) {
             try {
                 if (tickets.isEmpty()) {
